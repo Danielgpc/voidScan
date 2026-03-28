@@ -1,0 +1,80 @@
+VOID_SCAN - DOOM Style Engine TODO List
+=======================================
+
+Engine built in C + SDL2 - Software Rasterizer (CPU only)
+
+PHASE 1 - Core Engine Foundation (DONE)
+----------------------------------------
+1. Use the updated renderer (software framebuffer)
+2. Run "make run" - see dark window (20,20,40)
+
+PHASE 2 - Player & Input
+------------------------
+3. Create Player struct (x, y, angle, speed)
+4. Add keyboard input using SDL_GetKeyboardState (WASD + arrows)
+5. Implement forward/back movement and left/right rotation
+
+PHASE 3 - Map & Basic Raycasting
+--------------------------------
+6. Create simple 16x16 grid map (1 = wall, 0 = empty)
+7. Write main raycasting loop (one ray per screen column)
+8. For each column: cast ray, find wall distance, calculate wall height
+9. Draw vertical wall slices into framebuffer (using SDL_FillRect for now)
+
+PHASE 4 - Retro Visuals
+-----------------------
+10. Add flat color floor and ceiling
+11. Fix fish-eye distortion (distance * cos(delta_angle))
+12. Add distance-based shading (darker walls when farther)
+
+PHASE 5 - Textures
+------------------
+13. Load 64x64 wall textures (start with raw arrays or simple files)
+14. Implement textured vertical columns (texture mapping)
+15. Support different textures per map wall
+
+PHASE 6 - Movement & Collision
+------------------------------
+16. Add proper wall collision detection
+17. Add strafe left/right (A/D keys)
+18. Add variable movement speed
+
+PHASE 7 - Fixed-Point Math (True Retro)
+---------------------------------------
+19. Replace all float/double with fixed-point arithmetic (16.16)
+20. Create sin/cos lookup tables
+21. Convert entire raycaster to integer-only math
+
+PHASE 8 - Polish & Extras
+-------------------------
+22. Add minimap (small 2D top-down view in corner)
+23. Add simple sprites / billboards (like barrels)
+24. Add basic weapon sprite at bottom of screen
+25. Add shooting animation / effect
+
+PHASE 9 - Advanced Doom-like Features
+-------------------------------------
+26. Implement simple BSP tree for levels
+27. Add variable floor/ceiling heights (sectors)
+28. Create lump-based asset system (one file for maps + textures)
+29. Add sound support (SDL_mixer - optional)
+
+PHASE 10 - Final Engine
+-----------------------
+30. Clean code + comments
+31. Support classic resolutions (320x200 or 640x400)
+32. Add simple config file for controls/resolution
+33. Test performance and optimize hot loops
+
+How to use:
+-----------
+- Do ONE step at a time
+- After each step the game must still compile and run
+- When you finish a step, reply with "done step X"
+- I will give you the exact code for the next step
+
+Current recommended order:
+Start with Phase 2 → Phase 3 (raycasting is the heart of the engine)
+
+Project name: VOID_SCAN
+Style: Pure 1990s id Tech - CPU pixel pushing, no GPU, fixed-point math

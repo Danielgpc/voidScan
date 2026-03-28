@@ -1,0 +1,35 @@
+# .clangd   (placed in project root, next to Makefile)
+
+CompileFlags:
+  # Main include paths your project uses
+  Add:
+    # Your own headers
+    # - -Isrc
+
+    # Homebrew SDL2 location (very common on Apple Silicon & Intel Macs)
+    - -I/opt/homebrew/include
+    - -I/opt/homebrew/include/SDL2
+
+    # Very useful defines that appear in many SDL projects
+    - -D_THREAD_SAFE
+
+    # Optional: help clangd understand this is C (not C++)
+    # (you can remove -xc if you ever add C++ files later)
+    - -xc
+
+    # Match your Makefile warning level
+    - -Wall
+    - -Wextra
+
+  # Optional: if you sometimes get wrong standard/library assumptions
+  # Remove: [-std=c++*]   # uncomment if clangd keeps thinking it's C++
+
+# If you only work with .c files and want to be very explicit:
+# CompileFlags:
+#   Add: [-xc, -std=c11, -Wall, -Wextra]
+
+# Optional: make diagnostics a bit cleaner / closer to your build
+Diagnostics:
+  ClangTidy:
+    Add: [performance-*, bugprone-*, readability-*]
+    # Remove: [modernize-use-nullptr]   # example — add things you don't like
