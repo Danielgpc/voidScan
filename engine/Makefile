@@ -18,10 +18,10 @@ endif
 OBJDIR = ../build/engine
 
 # Source files
-SRCS = renderer.c
+SRCS = src/renderer.c
 
 # Object files
-OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
+OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 
 # Library name
 LIB = $(OBJDIR)/libengine.a
@@ -31,7 +31,7 @@ all: $(LIB)
 $(LIB): $(OBJS)
 	ar rcs $(LIB) $(OBJS)
 
-$(OBJDIR)/%.o: %.c
+$(OBJDIR)/%.o: src/%.c
 	@mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 

@@ -5,7 +5,7 @@ UNAME := $(shell uname)
 
 # Compiler and flags
 CC = gcc
-CFLAGS = -Wall -Wextra -D_THREAD_SAFE -I../engine
+CFLAGS = -Wall -Wextra -D_THREAD_SAFE -I../engine/src
 LDFLAGS = -lSDL2 ../build/engine/libengine.a
 
 # OS-specific paths
@@ -18,10 +18,10 @@ endif
 OBJDIR = ../build/game
 
 # Source files
-SRCS = main.c
+SRCS = src/main.c
 
 # Object files
-OBJS = $(addprefix $(OBJDIR)/, $(SRCS:.c=.o))
+OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 
 # Executable name
 TARGET = $(OBJDIR)/voidscan
@@ -31,7 +31,7 @@ all: $(TARGET)
 $(TARGET): $(OBJS) ../build/engine/libengine.a
 	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS)
 
-$(OBJDIR)/%.o: %.c
+$(OBJDIR)/%.o: src/%.c
 	@mkdir -p $(OBJDIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 

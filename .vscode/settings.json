@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/Users/danielgp/Projects/voidScan/build/game",
+            "binaryPath": "/Users/danielgp/Projects/voidScan/build/game/voidscan",
+            "binaryArgs": []
+        }
+    ]
+}
