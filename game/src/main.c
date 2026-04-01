@@ -3,12 +3,17 @@
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
+  
+  // Create an initialize renderer
   Renderer renderer = {0};
 
   if (!initRenderer(&renderer)) {
     printf("Failed to initialize renderer\n");
     return 1;
   }
+
+  // Create player
+  Player player = {0};
 
   int quit = 0;
   SDL_Event event;
@@ -22,8 +27,7 @@ int main(int argc, char *argv[]) {
       // TODO: Add keyboard input for movement later
     }
 
-    // === DRAWING STARTS HERE (CPU side) ===
-    // Clear framebuffer to black (replace this with your raycaster later)
+    // Clear framebuffer to black
     SDL_FillRect(renderer.framebuffer, NULL,
                  SDL_MapRGB(renderer.framebuffer->format, 20, 20,
                             40)); // dark retro color
