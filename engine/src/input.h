@@ -3,7 +3,7 @@
 typedef struct
 {
   int forward;
-  int backword;
+  int backward;
   int right;
   int left;
 
@@ -16,3 +16,6 @@ typedef struct
   int quit;
   
 } InputState;
+
+void initInput(InputState* input);
+void updateInput(InputState* input);
