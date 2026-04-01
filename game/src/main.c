@@ -1,8 +1,10 @@
-#include <renderer.h>
+#include <engine.h>
 #include <SDL2/SDL.h>
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
+  
+  // Create an initialize renderer
   Renderer renderer = {0};
 
   if (!initRenderer(&renderer)) {
@@ -10,30 +12,27 @@ int main(int argc, char *argv[]) {
     return 1;
   }
 
+  // Init input
+  InputState input = {0};
+  initInput(&input);
+
+  // Create player
+  Player player = {0};
+
   int quit = 0;
   SDL_Event event;
 
-  while (!quit) {
-    // Event handling
-    while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_QUIT) {
-        quit = 1;
-      }
-      // TODO: Add keyboard input for movement later
-    }
+  while (!input.quit) {
+    updateInput(&input);        // <-- call this first every frame
 
-    // === DRAWING STARTS HERE (CPU side) ===
-    // Clear framebuffer to black (replace this with your raycaster later)
+    // Clear framebuffer to dark retro color
     SDL_FillRect(renderer.framebuffer, NULL,
-                 SDL_MapRGB(renderer.framebuffer->format, 20, 20,
-                            40)); // dark retro color
+        SDL_MapRGB(renderer.framebuffer->format, 20, 20, 40));
 
-    // TODO: Here you will put your raycasting loop
-    // for each column x from 0 to width-1:
-    //     cast ray, find wall height, draw vertical textured column into
-    //     framebuffer->pixels
+    // TODO: raycasting will go here later
 
-    // Present the frame
+    handleInput(&input);
+
     renderPresent(&renderer);
   }
 

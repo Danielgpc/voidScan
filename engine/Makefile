@@ -18,7 +18,7 @@ endif
 OBJDIR = ../build/engine
 
 # Source files
-SRCS = src/renderer.c
+SRCS = src/renderer.c src/input.c
 
 # Object files
 OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
