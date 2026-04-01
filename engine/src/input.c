@@ -55,3 +55,11 @@ void updateInput(InputState* input) {
     }
   }
 }
+
+void handleInput(InputState* input) {
+  // Simple movement example
+    if (input->forward)  printf("Moving forward\n");
+    if (input->backward) printf("Moving backward\n");
+    if (input->left)     printf("Moving left\n");
+    if (input->right)    printf("Moving right\n");
+}

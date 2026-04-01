@@ -19,3 +19,4 @@ typedef struct
 
 void initInput(InputState* input);
 void updateInput(InputState* input);
+void handleInput(InputState* input);

@@ -31,11 +31,7 @@ int main(int argc, char *argv[]) {
 
     // TODO: raycasting will go here later
 
-    // Simple movement example
-    if (input.forward)  printf("Moving forward\n");
-    if (input.backward) printf("Moving backward\n");
-    if (input.left)     printf("Turning left\n");
-    if (input.right)    printf("Turning right\n");
+    handleInput(&input);
 
     renderPresent(&renderer);
   }
