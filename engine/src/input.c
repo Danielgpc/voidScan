@@ -82,10 +82,30 @@ void updateInput(InputState* input) {
  * @param player The player to update.
  */
 void handleInput(InputState* input, Player* player) {
-  // Simple movement example
-  if (input->forward)  player->x += FIXED_FROM_INT(MOVE_SPEED);
-  if (input->backward) player->x -= FIXED_FROM_INT(MOVE_SPEED);
-  if (input->left)     player->y -= FIXED_FROM_INT(MOVE_SPEED);
-  if (input->right)    player->y += FIXED_FROM_INT(MOVE_SPEED);
-  if (input->mouse_dx > 0 || input->mouse_dx < 0) player->angle = addAngle(player->angle, FIXED_FROM_INT(input->mouse_dx));
+  
+  // Forward / Backward
+  if (input->forward) {
+    player->x += FIXED_MUL(FIXED_FROM_INT(MOVE_SPEED), fixed_cos(player->angle));
+    player->y += FIXED_MUL(FIXED_FROM_INT(MOVE_SPEED), fixed_sin(player->angle));
+  }
+  if (input->backward) {
+    player->x -= FIXED_MUL(FIXED_FROM_INT(MOVE_SPEED), fixed_cos(player->angle));
+    player->y -= FIXED_MUL(FIXED_FROM_INT(MOVE_SPEED), fixed_sin(player->angle));
+  }
+  
+  // Strafe Left / Right
+  if (input->left) {
+    player->x += FIXED_MUL(FIXED_FROM_INT(MOVE_SPEED), fixed_sin(player->angle));
+    player->y -= FIXED_MUL(FIXED_FROM_INT(MOVE_SPEED), fixed_cos(player->angle));
+  }
+  if (input->right) {
+    player->x -= FIXED_MUL(FIXED_FROM_INT(MOVE_SPEED), fixed_sin(player->angle));
+    player->y += FIXED_MUL(FIXED_FROM_INT(MOVE_SPEED), fixed_cos(player->angle));
+  }
+  
+  // Mouse look
+  if (input->mouse_dx != 0) {
+    player->angle = addAngle(player->angle, FIXED_FROM_INT(input->mouse_dx / 6));
+    input->mouse_dx = 0;
+  }
 }
