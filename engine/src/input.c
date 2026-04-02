@@ -1,6 +1,7 @@
 #include "input.h"
 
 #include "SDL2/SDL.h"
+#include "math.h"
 
 void initInput(InputState* input) {
   input->forward = 0;
@@ -45,6 +46,7 @@ void updateInput(InputState* input) {
         case SDL_SCANCODE_D:     input->right= pressed; break;
         case SDL_SCANCODE_SPACE: input->fire        = pressed; break;
         case SDL_SCANCODE_E:     input->use         = pressed; break;
+        case SDL_SCANCODE_ESCAPE:
         case SDL_SCANCODE_Q:     input->quit        = pressed; break;
         default: break;
       }
@@ -56,10 +58,11 @@ void updateInput(InputState* input) {
   }
 }
 
-void handleInput(InputState* input) {
+void handleInput(InputState* input, Player* player) {
   // Simple movement example
-    if (input->forward)  printf("Moving forward\n");
-    if (input->backward) printf("Moving backward\n");
-    if (input->left)     printf("Moving left\n");
-    if (input->right)    printf("Moving right\n");
+  if (input->forward)  printf("Moving forward\n");
+  if (input->backward) printf("Moving backward\n");
+  if (input->left)     printf("Moving left\n");
+  if (input->right)    printf("Moving right\n");
+  if (input->mouse_dx > 0 || input->mouse_dx < 0) printf("Angle cahnged\n"); // addAngle(player->angle, input->mouse_dx);
 }

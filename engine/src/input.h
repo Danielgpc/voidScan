@@ -1,5 +1,7 @@
 #pragma once
 
+#include "player.h"
+
 typedef struct
 {
   int forward;
@@ -19,4 +21,4 @@ typedef struct
 
 void initInput(InputState* input);
 void updateInput(InputState* input);
-void handleInput(InputState* input);
+void handleInput(InputState* input, Player* player);
