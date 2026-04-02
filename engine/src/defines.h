@@ -7,7 +7,7 @@
 #define FOV             8
 #define MOVE_SPEED      1
 #define MAX_RAY_STEPS   200
-#define WALL_HEIGHT_MUL 400
+#define WALL_HEIGHT_MUL 1000
 #define MAX_DARK_DIST   12
 #define BRIGHTNESS_MUL  20
 #define SENSITIVITY     6 // bigger = less sensitive, smaller = more sensitive
