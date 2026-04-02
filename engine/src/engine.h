@@ -5,3 +5,4 @@
 #include "fixed.h"
 #include "input.h"
 #include "math.h"
+#include "defines.h"
