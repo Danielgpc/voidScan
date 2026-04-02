@@ -1,6 +1,8 @@
 #pragma once
 
 #include "player.h"
+#include "math.h"
+#include "defines.h"
 
 typedef struct
 {

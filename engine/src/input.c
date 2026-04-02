@@ -1,7 +1,6 @@
 #include "input.h"
 
 #include <SDL2/SDL.h>
-#include "math.h"
 
 /**
  * Initializes an InputState struct by setting all its member variables to zero.
@@ -84,9 +83,9 @@ void updateInput(InputState* input) {
  */
 void handleInput(InputState* input, Player* player) {
   // Simple movement example
-  if (input->forward)  player->x += FIXED_FROM_INT(1);
-  if (input->backward) player->x -= FIXED_FROM_INT(1);
-  if (input->left)     player->y -= FIXED_FROM_INT(1);
-  if (input->right)    player->y += FIXED_FROM_INT(1);
+  if (input->forward)  player->x += FIXED_FROM_INT(MOVE_SPEED);
+  if (input->backward) player->x -= FIXED_FROM_INT(MOVE_SPEED);
+  if (input->left)     player->y -= FIXED_FROM_INT(MOVE_SPEED);
+  if (input->right)    player->y += FIXED_FROM_INT(MOVE_SPEED);
   if (input->mouse_dx > 0 || input->mouse_dx < 0) player->angle = addAngle(player->angle, FIXED_FROM_INT(input->mouse_dx));
 }
