@@ -68,8 +68,8 @@ int main(int argc, char *argv[]) {
       for(int step = 0; step < 200; step++) {           // max 200 steps to avoid infinite loop
         distance += FIXED_FROM_INT(1);                // move 1 unit forward each step
         
-        ray_x = player.x + FIXED_MUL(distance, /* TODO: cos(ray_angle) */ FIXED_FROM_INT(1));
-        ray_y = player.y + FIXED_MUL(distance, /* TODO: sin(ray_angle) */ FIXED_FROM_INT(0));
+        ray_x = player.x + FIXED_MUL(distance, fixed_cos(ray_angle));
+        ray_y = player.y + FIXED_MUL(distance, fixed_sin(ray_angle));
         
         // Convert to map grid coordinates
         int map_x = INT_FROM_FIXED(ray_x);

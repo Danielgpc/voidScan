@@ -84,9 +84,9 @@ void updateInput(InputState* input) {
  */
 void handleInput(InputState* input, Player* player) {
   // Simple movement example
-  if (input->forward)  printf("Moving forward\n");
-  if (input->backward) printf("Moving backward\n");
-  if (input->left)     printf("Moving left\n");
-  if (input->right)    printf("Moving right\n");
+  if (input->forward)  player->x += FIXED_FROM_INT(1);
+  if (input->backward) player->x -= FIXED_FROM_INT(1);
+  if (input->left)     player->y -= FIXED_FROM_INT(1);
+  if (input->right)    player->y += FIXED_FROM_INT(1);
   if (input->mouse_dx > 0 || input->mouse_dx < 0) printf("Angle cahnged\n"); // addAngle(player->angle, input->mouse_dx);
 }
