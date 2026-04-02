@@ -56,10 +56,10 @@ int main(int argc, char *argv[]) {
 
     for(int x = 0; x < renderer.width; x++) {
       
-      // 1. Calculate ray angle for this column
+      // Calculate ray angle for this column
       fixed_t ray_angle = addAngle(player.angle, FIXED_FROM_INT(x - renderer.width/2) / 8);
       
-      // 2. Very simple ray marching (step forward until we hit a wall)
+      // Very simple ray marching (step forward until we hit a wall)
       fixed_t ray_x = player.x;
       fixed_t ray_y = player.y;
       fixed_t distance = FIXED_FROM_INT(0);
@@ -75,14 +75,14 @@ int main(int argc, char *argv[]) {
         int map_x = INT_FROM_FIXED(ray_x);
         int map_y = INT_FROM_FIXED(ray_y);
         
-        // Check if we hit a wall
+        // Check if hit a wall
         if (map_x < 0 || map_x >= 16 || map_y < 0 || map_y >= 16) break;
         if (MAP[map_y][map_x] == 1) {
           break;   // we hit a wall!
         }
       }
       
-      // 3. Use the distance we found
+      // Use the distance found
       int wall_height = 400 / (INT_FROM_FIXED(distance) + 1);   // +1 to avoid divide by zero
       if (wall_height < 4) wall_height = 4;
       
@@ -91,12 +91,19 @@ int main(int argc, char *argv[]) {
       
       SDL_Rect slice = { x, draw_start, 1, wall_height };
       
-      Uint32 color;
-      if (x < renderer.width / 2) {
-        color = SDL_MapRGB(renderer.framebuffer->format, 120, 120, 255);
-      } else {
-        color = SDL_MapRGB(renderer.framebuffer->format, 70, 70, 180);
-      }
+      // Calculate wall color
+      int dist = INT_FROM_FIXED(distance);
+      int max_dist = 12;
+      if (dist > max_dist) dist = max_dist;
+
+      // Calculate brightness
+      int brightness = 255 - (dist * 20);
+      if (brightness < 0) brightness = 0;
+      
+      Uint32 color = SDL_MapRGB(renderer.framebuffer->format, 
+                                brightness, 
+                                brightness * (187 / 255), 
+                                0);
       
       SDL_FillRect(renderer.framebuffer, &slice, color);
     }
