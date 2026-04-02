@@ -1,9 +1,19 @@
 #include "math.h"
 
 fixed_t addAngle(fixed_t angle, fixed_t add) {
-  if (angle + add > INT_FROM_FIXED(360)) {
-      return angle + add - INT_FROM_FIXED(360);
-    } else {
-      return angle + add;
-    }
+  // Get the raw fixed-point representation of 360
+  fixed_t fullCircle = FIXED_FROM_INT(360); 
+  
+  // Perform the addition
+  fixed_t result = angle + add;
+
+  // Modulo works on the raw underlying bits
+  result %= fullCircle;
+
+  // Handle negative wrap-around
+  if (result < 0) {
+    result += fullCircle;
+  }
+
+  return result;
 }
