@@ -14,7 +14,7 @@ PHASE 2 - Player & Input (DONE)
 4. Add keyboard input using SDL_GetKeyboardState (WASD + arrows)
 5. Implement forward/back movement and left/right rotation
 
-PHASE 3 - Map & Basic Raycasting
+PHASE 3 - Map & Basic Raycasting (DONE)
 --------------------------------
 6. Create simple 16x16 grid map (1 = wall, 0 = empty)
 7. Write main raycasting loop (one ray per screen column)
