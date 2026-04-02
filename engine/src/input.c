@@ -3,6 +3,13 @@
 #include "SDL2/SDL.h"
 #include "math.h"
 
+/**
+ * Initializes an InputState struct by setting all its member variables to zero.
+ *
+ * This is typically called once before the main loop of the game, to clear out any garbage
+ * values that may have been left in the struct.
+ * @param input The input state to initialize.
+ */
 void initInput(InputState* input) {
   input->forward = 0;
   input->backward = 0;
@@ -15,6 +22,14 @@ void initInput(InputState* input) {
   input->quit = 0;
 }
 
+/**
+ * Resets all input state variables to zero, then processes all pending
+ * SDL events and updates the input state accordingly.
+ *
+ * This function is called once per frame and should be called before updating
+ * the game state.
+ * @param input The input state to update.
+ */
 void updateInput(InputState* input) {
 // Reset everything for this new frame
   input->forward = 0;
@@ -58,6 +73,15 @@ void updateInput(InputState* input) {
   }
 }
 
+/**
+ * Handles the input state by updating the player's state.
+ *
+ * Currently only handles basic movement (forward, backward, left, right)
+ * and angle changes from mouse motion.
+ *
+ * @param input The current input state.
+ * @param player The player to update.
+ */
 void handleInput(InputState* input, Player* player) {
   // Simple movement example
   if (input->forward)  printf("Moving forward\n");
