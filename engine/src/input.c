@@ -88,5 +88,5 @@ void handleInput(InputState* input, Player* player) {
   if (input->backward) player->x -= FIXED_FROM_INT(1);
   if (input->left)     player->y -= FIXED_FROM_INT(1);
   if (input->right)    player->y += FIXED_FROM_INT(1);
-  if (input->mouse_dx > 0 || input->mouse_dx < 0) printf("Angle cahnged\n"); // addAngle(player->angle, input->mouse_dx);
+  if (input->mouse_dx > 0 || input->mouse_dx < 0) player->angle = addAngle(player->angle, FIXED_FROM_INT(input->mouse_dx));
 }

@@ -61,6 +61,8 @@ int initRenderer(Renderer *r) {
     return 0;
   }
 
+  SDL_SetRelativeMouseMode(SDL_TRUE);
+
   printf("Renderer initialized - %dx%d software framebuffer ready\n", r->width,
          r->height);
   return 1;

@@ -101,8 +101,6 @@ int main(int argc, char *argv[]) {
       SDL_FillRect(renderer.framebuffer, &slice, color);
     }
 
-    printf("%i", player.angle);
-
     handleInput(&input, &player);
 
     renderPresent(&renderer);
