@@ -43,7 +43,7 @@ int initRenderer(Renderer *r) {
     return 0;
   }
 
-  // Create the software framebuffer (this is our pixel buffer)
+  // Create the software framebuffer
   r->framebuffer = SDL_CreateRGBSurface(
                                         0, 
                                         r->width, 

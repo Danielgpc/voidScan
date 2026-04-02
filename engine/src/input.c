@@ -105,7 +105,7 @@ void handleInput(InputState* input, Player* player) {
   
   // Mouse look
   if (input->mouse_dx != 0) {
-    player->angle = addAngle(player->angle, FIXED_FROM_INT(input->mouse_dx / 6));
+    player->angle = addAngle(player->angle, FIXED_FROM_INT(input->mouse_dx / SENSITIVITY));
     input->mouse_dx = 0;
   }
 }
