@@ -1,7 +1,15 @@
 #include "input.h"
 
-#include "SDL2/SDL.h"
+#include <SDL2/SDL.h>
+#include "math.h"
 
+/**
+ * Initializes an InputState struct by setting all its member variables to zero.
+ *
+ * This is typically called once before the main loop of the game, to clear out any garbage
+ * values that may have been left in the struct.
+ * @param input The input state to initialize.
+ */
 void initInput(InputState* input) {
   input->forward = 0;
   input->backward = 0;
@@ -14,6 +22,14 @@ void initInput(InputState* input) {
   input->quit = 0;
 }
 
+/**
+ * Resets all input state variables to zero, then processes all pending
+ * SDL events and updates the input state accordingly.
+ *
+ * This function is called once per frame and should be called before updating
+ * the game state.
+ * @param input The input state to update.
+ */
 void updateInput(InputState* input) {
 // Reset everything for this new frame
   input->forward = 0;
@@ -45,6 +61,7 @@ void updateInput(InputState* input) {
         case SDL_SCANCODE_D:     input->right= pressed; break;
         case SDL_SCANCODE_SPACE: input->fire        = pressed; break;
         case SDL_SCANCODE_E:     input->use         = pressed; break;
+        case SDL_SCANCODE_ESCAPE:
         case SDL_SCANCODE_Q:     input->quit        = pressed; break;
         default: break;
       }
@@ -56,10 +73,20 @@ void updateInput(InputState* input) {
   }
 }
 
-void handleInput(InputState* input) {
+/**
+ * Handles the input state by updating the player's state.
+ *
+ * Currently only handles basic movement (forward, backward, left, right)
+ * and angle changes from mouse motion.
+ *
+ * @param input The current input state.
+ * @param player The player to update.
+ */
+void handleInput(InputState* input, Player* player) {
   // Simple movement example
-    if (input->forward)  printf("Moving forward\n");
-    if (input->backward) printf("Moving backward\n");
-    if (input->left)     printf("Moving left\n");
-    if (input->right)    printf("Moving right\n");
+  if (input->forward)  player->x += FIXED_FROM_INT(1);
+  if (input->backward) player->x -= FIXED_FROM_INT(1);
+  if (input->left)     player->y -= FIXED_FROM_INT(1);
+  if (input->right)    player->y += FIXED_FROM_INT(1);
+  if (input->mouse_dx > 0 || input->mouse_dx < 0) player->angle = addAngle(player->angle, FIXED_FROM_INT(input->mouse_dx));
 }
