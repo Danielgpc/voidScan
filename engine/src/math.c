@@ -34,7 +34,12 @@ fixed_t addAngle(fixed_t angle, fixed_t add) {
  * @return The sine of the given angle.
  */
 fixed_t fixed_sin(fixed_t angle) {
-
+  // Convert fixed angle (0-359) to float degrees, then to radians
+  float degrees = (float)INT_FROM_FIXED(angle);
+  float radians = degrees * (3.1415926535f / 180.0f);
+  
+  float result = sinf(radians);           // sinf is faster than sin
+  return (fixed_t)(result * 65536.0f);    // back to fixed-point
 }
 
 /**
@@ -44,5 +49,9 @@ fixed_t fixed_sin(fixed_t angle) {
  * @return The cosine of the given angle.
  */
 fixed_t fixed_cos(fixed_t angle) {
+  float degrees = (float)INT_FROM_FIXED(angle);
+  float radians = degrees * (3.1415926535f / 180.0f);
   
+  float result = cosf(radians);
+  return (fixed_t)(result * 65536.0f);
 }
