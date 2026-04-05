@@ -21,7 +21,7 @@ PHASE 3 - Map & Basic Raycasting (DONE)
 8. For each column: cast ray, find wall distance, calculate wall height
 9. Draw vertical wall slices into framebuffer (using SDL_FillRect for now)
 
-PHASE 4 - Retro Visuals
+PHASE 4 - Retro Visuals (DONE)
 -----------------------
 10. Add flat color floor and ceiling
 11. Fix fish-eye distortion (distance * cos(delta_angle))
